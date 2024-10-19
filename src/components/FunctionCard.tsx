@@ -1,5 +1,6 @@
-import Input from "./Input";
-import Select from "./Select";
+import React from 'react';
+import Input from './Input';
+import Select from './Select';
 
 interface FunctionCardProps {
   index: string;
@@ -7,50 +8,49 @@ interface FunctionCardProps {
   output: number;
   next: number | null;
   onEquationChange: (index: string, newEquation: string) => void;
+  error?: string;
 }
 
-interface FunctionCardHeaderProps {
-  title: string;
-}
-
-const FunctionCardHeader: React.FC<FunctionCardHeaderProps> = ({ title }) => {
-  return (
-    <div className="w-full flex items-center align-left space-x-2 text-[#A5A5A5]">
-      <div className="flex-shrink-0">
-        <div className="grid grid-cols-3 gap-0.5">
-          <span className="block w-[3px] h-[3px] bg-[#CDCDCD] rounded-full"></span>
-          <span className="block w-[3px] h-[3px] bg-[#CDCDCD] rounded-full"></span>
-          <span className="block w-[3px] h-[3px] bg-[#CDCDCD] rounded-full"></span>
-          <span className="block w-[3px] h-[3px] bg-[#CDCDCD] rounded-full"></span>
-          <span className="block w-[3px] h-[3px] bg-[#CDCDCD] rounded-full"></span>
-          <span className="block w-[3px] h-[3px] bg-[#CDCDCD] rounded-full"></span>
-        </div>
-      </div>
-      <h3 className="text-sm font-semibold">{title}</h3>
-    </div>
-  );
-};
-
-const FunctionCard: React.FC<FunctionCardProps> = ({ index, equation, output, next, onEquationChange }) => {
+const FunctionCard: React.FC<FunctionCardProps> = ({
+  index,
+  equation,
+  output,
+  next,
+  onEquationChange,
+  error,
+}) => {
   const options = next
     ? [{ label: `Function ${next}`, value: next }]
     : [{ label: '-', value: '-' }];
 
   return (
-    <div className="w-[235px] h-[251px] rounded-2xl border-[1px] border-[#DFDFDF] p-6 bg-white shadow-functionCard flex flex-col items-center space-y-3">
-      <FunctionCardHeader title={'Function'} />
+    <div className="w-[235px] h-[251px] rounded-xl border border-gray-300 p-4 bg-white shadow-lg relative flex flex-col items-center">
+      <h3 className="text-sm font-semibold mb-2">Function {index}</h3>
       <Input
-        label='Equation'
+        label="Equation"
         value={equation}
         onChange={(e) => onEquationChange(index, e.target.value)}
+        error={error}
       />
-      <Select
-        value={options[0].value}
-        options={options}
-        onChange={() => { }} // Disabled select; no change needed
-        disabled={true}
-        label='Next Function'
-      />
+      <div className="mt-4 w-full">
+        <Select
+          value={options[0].value}
+          options={options}
+          onChange={() => { }}
+          disabled={true}
+          label="Next Function"
+        />
+      </div>
+
+      {/* Input and Output Points at the Bottom */}
+      <div className="w-full mt-auto flex justify-between items-center mb-1">
+        <div className='border-2 border-[#DBDBDB] p-[2px] rounded-full'>
+          <div className="input-point w-2 h-2 bg-blue-500 rounded-full"></div>
+        </div>
+        <div className='border-2 border-[#DBDBDB] p-[2px] rounded-full'>
+          <div className="output-point w-2 h-2 bg-blue-500 rounded-full"></div>
+        </div>
+      </div>
     </div>
   );
 };
