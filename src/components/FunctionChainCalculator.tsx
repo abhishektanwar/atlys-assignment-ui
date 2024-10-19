@@ -67,7 +67,7 @@ const FunctionChainCalculator: React.FC = () => {
   const secondRow = Object.keys(functions).slice(3);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-10 flex justify-center items-center">
+    <div className="min-h-screen min-w-screen bg-gray-100 p-10 flex justify-center items-center">
       <Connectors lines={lines} />
       <div className="flex flex-col items-center w-full relative">
         <div className="flex flex-col items-center">
