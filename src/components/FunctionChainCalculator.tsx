@@ -32,7 +32,7 @@ const FunctionChainCalculator: React.FC = () => {
     5: { equation: 'x/2', next: 3, error: '' },
   });
 
-  const { outputs, finalOutput, handleEquationChange } = useEvaluateEquation(
+  const { finalOutput, handleEquationChange } = useEvaluateEquation(
     initialValue,
     functions,
     setFunctions
@@ -81,7 +81,6 @@ const FunctionChainCalculator: React.FC = () => {
                 <FunctionCard
                   index={key}
                   equation={functions[key].equation}
-                  output={outputs[key]}
                   next={functions[key].next}
                   error={functions[key].error}
                   onEquationChange={handleEquationChange}
@@ -101,7 +100,6 @@ const FunctionChainCalculator: React.FC = () => {
                   <FunctionCard
                     index={key}
                     equation={functions[key].equation}
-                    output={outputs[key]}
                     next={functions[key].next}
                     error={functions[key].error}
                     onEquationChange={handleEquationChange}

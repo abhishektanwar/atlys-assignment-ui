@@ -5,7 +5,6 @@ import Select from './Select';
 interface FunctionCardProps {
   index: string;
   equation: string;
-  output: number;
   next: number | null;
   onEquationChange: (index: string, newEquation: string) => void;
   error?: string;
@@ -40,7 +39,6 @@ const FunctionCardHeader: React.FC<FunctionCardHeaderProps> = ({ title }) => {
 const FunctionCard: React.FC<FunctionCardProps> = ({
   index,
   equation,
-  output,
   next,
   onEquationChange,
   error,

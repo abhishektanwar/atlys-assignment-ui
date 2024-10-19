@@ -2,7 +2,6 @@ import { useCallback, RefObject } from 'react';
 
 interface UseUpdatePositionsProps {
   rowFirstRef: RefObject<HTMLDivElement>;
-  functionRefs: RefObject<(HTMLDivElement | null)[]>;
   inputRef: RefObject<HTMLDivElement>;
   outputRef: RefObject<HTMLDivElement>;
   calculateLines: () => void;
@@ -15,7 +14,6 @@ export interface Position {
 
 const useUpdatePositions = ({
   rowFirstRef,
-  functionRefs,
   inputRef,
   outputRef,
   calculateLines,
