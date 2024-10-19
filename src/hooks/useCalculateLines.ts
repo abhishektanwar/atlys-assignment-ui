@@ -22,6 +22,8 @@ interface UseCalculateLinesProps {
   functionRefs: React.RefObject<(HTMLDivElement | null)[]>;
   inputRef: React.RefObject<HTMLDivElement>;
   outputRef: React.RefObject<HTMLDivElement>;
+  finalOutput: number;
+  initialValue: number;
 }
 
 const useCalculateLines = ({
@@ -29,6 +31,8 @@ const useCalculateLines = ({
   functionRefs,
   inputRef,
   outputRef,
+  finalOutput,
+  initialValue
 }: UseCalculateLinesProps) => {
   const [lines, setLines] = useState<Line[]>([]);
 
@@ -47,7 +51,7 @@ const useCalculateLines = ({
         .getBoundingClientRect();
 
       newLines.push({
-        x1: inputBox.right,
+        x1: inputBox.right - inputRef.current.querySelector(".input-point")!.getBoundingClientRect().width - 6,
         y1: firstCardInputBox.top + firstCardInputBox.height / 2,
         x2: firstCardInputBox.left,
         y2: firstCardInputBox.top + firstCardInputBox.height / 2,
@@ -92,16 +96,16 @@ const useCalculateLines = ({
         .getBoundingClientRect();
 
       newLines.push({
-        x1: lastCardOutputBox.right,
+        x1: lastCardOutputBox.right ,
         y1: lastCardOutputBox.top + lastCardOutputBox.height / 2,
-        x2: outputBox.left,
+        x2: outputBox.left + outputRef.current.querySelector(".output-point")!.getBoundingClientRect().width + 6,
         y2: lastCardOutputBox.top + lastCardOutputBox.height / 2,
         isStraight: true,
       });
     }
 
     setLines(newLines)
-  }, [functions, functionRefs, inputRef, outputRef]);
+  }, [functions, functionRefs, inputRef, outputRef, finalOutput, initialValue]);
 
   return { lines, calculateLines };
 };

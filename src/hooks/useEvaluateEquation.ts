@@ -46,7 +46,7 @@ const useEvaluateEquation = (
     const isValid = validEquationPattern.test(newEquation);
     const error = isValid
       ? ''
-      : 'Invalid equation. Only numbers, x, +, -, *, /, ^, and parentheses are allowed.';
+      : 'Invalid equation';
 
     setFunctions((prev) => ({
       ...prev,

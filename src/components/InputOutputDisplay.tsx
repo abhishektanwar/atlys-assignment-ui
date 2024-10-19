@@ -23,8 +23,8 @@ const InputOutputDisplay: React.FC<InputOutputDisplayProps> = ({
 }) => {
   return (
     <>
-      <div className='absolute space-y-2  w-[115px]' ref={inputRef} style={{
-        left: 'max(20px, 5%)',
+      <div className='absolute space-y-2 w-[115px]' ref={inputRef} style={{
+        left: `${Math.abs((rowFirstRef.current?.getBoundingClientRect().left ?? 0) - 200)}px`,
         top: rowFirstRef.current && inputRef.current
           ? `${rowFirstRef.current.offsetHeight - inputRef.current.offsetHeight}px`
           : positions.outputTop,
@@ -42,11 +42,17 @@ const InputOutputDisplay: React.FC<InputOutputDisplayProps> = ({
               className='h-full'
             />
           </div>
-          <div className='w-[35px] h-full border-l-[#FFEED5] border-0 border-l-[1px] bg-white rounded-r-lg'></div>
+          <div className='w-[35px] h-full border-l-[#FFEED5] border-0 border-l-[1px] bg-white rounded-r-lg flex justify-center items-center'>
+            <div className='border-2 border-[#DBDBDB] p-[2px] rounded-full'>
+              <div className="input-point w-2 h-2 bg-blue-500 rounded-full"></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div className='absolute space-y-2  w-[115px]' ref={outputRef} style={{
-        right: 'max(20px, 5%)',
+
+
+      <div className='absolute space-y-2  min-w-[115px] w-fit max-w-[300px]' ref={outputRef} style={{
+        right: 'max(200px,5%)',
         top: rowFirstRef.current && outputRef.current
           ? `${rowFirstRef.current.offsetHeight - outputRef.current.offsetHeight}px`
           : positions.outputTop,
@@ -55,8 +61,12 @@ const InputOutputDisplay: React.FC<InputOutputDisplayProps> = ({
         <div
           className='flex h-[50px] rounded-lg border-2 border-[#2DD179] outline-none'
         >
-          <div className='w-[35px] h-full border-r-[#C5F2DA] border-0 border-r-[1px] bg-white rounded-l-lg'></div>
-          <span className='w-[80px] h-full flex items-center justify-end p-2 text-right bg-white rounded-r-lg'>
+          <div className='w-[35px] h-full border-r-[#C5F2DA] border-0 border-r-[1px] bg-white rounded-l-lg flex justify-center items-center'>
+            <div className='border-2 w-fit border-[#DBDBDB] p-[2px] rounded-full'>
+              <div className="output-point w-2 h-2 bg-blue-500 rounded-full"></div>
+            </div>
+          </div>
+          <span className='min-w-[80px] w-fit h-full flex items-center justify-end p-2 text-right bg-white rounded-r-lg'>
             {finalOutput}
           </span>
         </div>

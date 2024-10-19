@@ -10,14 +10,14 @@ interface SelectProps {
 
 const Select: React.FC<SelectProps> = ({ value, options, onChange, label, disabled = false }) => {
   return (
-    <div className=' w-full '>
+    <div className='w-full'>
       {label && <label className="text-xs text-[#252525] font-medium">{label}</label>}
       <div className='flex flex-col relative'>
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
-          className={`appearance-none bg-white p-2 border-[1px] border-[#D3D3D3] rounded-lg text-xs font-medium ${disabled ? 'bg-[#eeeeee] text-[#858585]' : ''}`}
+          className={`appearance-none bg-white p-2 border-[1px] h-[33px] border-[#D3D3D3] rounded-lg text-xs font-medium ${disabled ? 'bg-[#d5d4d4eb] text-[#858585]' : ''}`}
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>

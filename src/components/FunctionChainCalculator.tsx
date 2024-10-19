@@ -43,7 +43,9 @@ const FunctionChainCalculator: React.FC = () => {
       functions,
       functionRefs,
       inputRef,
-      outputRef
+      outputRef,
+      finalOutput,
+      initialValue
     }
   );
 
